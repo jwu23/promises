@@ -24,44 +24,21 @@ var fetchProfileAndWriteToFile = function(readFilePath, writeFilePath) {
       return getProfile.getGitHubProfileAsync(gotUserName)
     })
     .then(function(usernameToWrite) {
-      // console.log("writeTo", writeTo)
-      // return getUser.g
-      console.log("usernameToWrite", typeof usernameToWrite)
       return new Promise(function(resolve, reject) {
-        console.log("writeFilePath", writeFilePath)
         fs.writeFile(writeFilePath, JSON.stringify(usernameToWrite), (err, file) => {
           if (err) {
             reject(err);
           } else {
-            console.log("file", file);
             resolve(file);
           }
         })
       })
-
     })
     .catch(function(err) {
       console.log(err);
     })
-
-  // return new Promise((resolve, reject) => {
-  //   fs.readFile(readFilePath, {encoding: 'utf-8'}, (err, file) = > {
-  //     if (err) {
-
-  //     }
-  //   })
-  // })
 };
 
-
-// return fs.readFile(readFilePath)
-//   .then(function(username) {
-//     console.log(username)
-//     return username
-//   })
-//   .catch(function(err) {
-//     console.log(err)
-//   })
 // Export these functions so we can test them
 module.exports = {
   fetchProfileAndWriteToFile: fetchProfileAndWriteToFile
